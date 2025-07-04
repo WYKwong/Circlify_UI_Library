@@ -1,0 +1,131 @@
+/* ─────────────── 变量 & 全局基础 ─────────────── */
+:root {
+  --clr: #222;                 /* shadow*/
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ─────────────── 容器 ─────────────── */
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 60px;
+}
+
+/* ─────────────── 卡片主体 ─────────────── */
+.container .card {
+  position: relative;
+  width: 320px;
+  height: 250px;
+  background: #fff;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.container .card:hover {
+  height: 350px;
+}
+
+/* ─────────────── 图片盒子 ─────────────── */
+.container .card .img-box {
+  position: absolute;
+  inset: 20px 20px 50px 20px;
+  background: #f00;           
+  border-radius: 15px;
+  overflow: hidden;
+  transition: 0.5s;
+}
+
+.container .card:hover .img-box {
+  inset: -50px 60px 250px 60px;
+  box-shadow: 0 0 0 10px var(--clr);
+}
+
+/* 图片本身 */
+.container .card .img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+/* ─────────────── 装饰圆角（右上 / 左上） ─────────────── */
+.container .card .img-box::after,
+.container .card .img-box::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  top: 0;
+  transform: translateY(-100px);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.container .card .img-box::after {
+  right: -30px;
+  border-top-left-radius: 20px;
+  box-shadow: -5px -5px 0 4px var(--clr);
+}
+
+.container .card .img-box::before {
+  left: -30px;
+  border-top-right-radius: 20px;
+  box-shadow: 5px -5px 0 4px var(--clr);
+}
+
+.container .card:hover .img-box::after,
+.container .card:hover .img-box::before {
+  opacity: 1;
+  transform: translateY(50px);
+}
+
+/* ─────────────── 标题 ─────────────── */
+.container .card h2 {
+  position: absolute;
+  bottom: 8px;
+  color: #333;
+  font-weight: 600;
+  transition: 0.5s;
+}
+
+.container .card:hover h2 {
+  padding: 5px 25px;
+  background: #6f25ce;
+  color: #ffffff;
+  bottom: -25px;
+  border-radius: 15px;
+  box-shadow: 0 0 0 10px var(--clr);
+}
+
+/* ─────────────── 描述文字 ─────────────── */
+.container .card p {
+  position: relative;
+  padding: 40px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(-50px);
+  transition: 0.5s;
+  color: #666;
+}
+
+.container .card:hover p {
+  opacity: 1;
+  transform: translateY(40px);
+}
